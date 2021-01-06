@@ -1,13 +1,14 @@
 import React from 'react'
 import { useSelector } from 'react-redux'
 import useFetch from '../Hooks/useFetch'
+import Loader from '../Components/Loader'
 import FavoriteList from '../Components/FavoriteList'
 
 function Favorite() {
   const id = useSelector(state => state.id)
   const { data: characters, loading, error } = useFetch("https://rickandmortyapi.com/api/character/"+id)
   if (error) return <h1>Looks like our server is currently having an issue</h1>
-  if (loading) return <h1>Please Wait ....</h1>
+  if (loading) return <Loader/>
 
   if (characters.results) {
     return(
@@ -15,8 +16,8 @@ function Favorite() {
         <div className="card-header text-center bg-warning p-0">
           <h1>Favorite List</h1>
         </div>
-        <div className="row card-body text-white justify-content-center p-0">
-          <h1>You Haven't Added Any Character Yet</h1>
+        <div className="row card-body text-white justify-content-center p-0" style={{height: "50vh"}}>
+          <h1 className="align-self-center text-warning">You Haven't Added Any Character Yet</h1>
         </div>
       </div>
     )

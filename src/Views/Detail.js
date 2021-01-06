@@ -1,6 +1,7 @@
 import React from 'react'
 import { useParams } from 'react-router-dom'
 import DetailCharacter from '../Components/DetailCharacter'
+import Loader from '../Components/Loader'
 import useFetch from '../Hooks/useFetch'
 
 function Detail() {
@@ -9,7 +10,7 @@ function Detail() {
   const { data: character, loading, error } = useFetch(url)
 
   if (error) return <h1>Looks like our server is currently having an issue</h1>
-  if (loading) return <h1>Please Wait ....</h1>
+  if (loading) return <Loader/>
 
   return(
     <div>
