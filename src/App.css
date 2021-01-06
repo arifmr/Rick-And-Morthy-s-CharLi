@@ -53,3 +53,12 @@ td {
     transform: rotate(360deg);
   }
 }
+
+.nav_link {
+  color: lightgray;
+}
+
+a.nav_link:hover {
+cursor: pointer;
+color: red; 
+}

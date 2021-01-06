@@ -1,6 +1,5 @@
 import React from 'react'
 import CharacterList from '../Components/CharacterList'
-import Navbar from '../Components/Navbar'
 import useFetch from '../Hooks/useFetch'
 
 function Home() {
@@ -11,7 +10,6 @@ function Home() {
 
   return(
     <div>
-      <Navbar/>
       <div className="container card shadow-lg mt-5" style={{backgroundColor: "gray"}}>
         <div className="card-header row justify-content-center bg-warning">
           <h1>Character List</h1>
