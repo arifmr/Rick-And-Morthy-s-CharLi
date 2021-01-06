@@ -9,7 +9,7 @@ function Home() {
   if (loading) return <h1>Please Wait ....</h1>
 
   return(
-    <div>
+    <div className="pb-5">
       <div className="container card shadow-lg mt-5" style={{backgroundColor: "gray"}}>
         <div className="card-header row justify-content-center bg-warning">
           <h1>Character List</h1>

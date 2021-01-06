@@ -13,7 +13,7 @@ function useFetch(url) {
         setTimeout(() => {
           setData(res)
           setLoading(false)
-        }, 1500)
+        }, 1000)
       })
       .catch(err => {
         setError(err);
