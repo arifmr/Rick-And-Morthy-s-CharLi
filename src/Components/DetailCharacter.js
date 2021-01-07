@@ -2,8 +2,10 @@ import React from 'react'
 
 function DetailCharacter({character}) {
   return (
-    <div className="row card shadow-lg mt-5" style={{height: "70vh", width: "50vh"}}>
-      <div className="card-header col p-0"><img src={character.image} alt={character.image} style={{width: "100%"}}/></div>
+    <div className="row card shadow-lg mt-5" style={{height: "80vh", width: "50vh"}}>
+      <div className="card-header col p-0">
+        <img src={character.image} alt={character.image} style={{width: "100%"}}></img>
+        </div>
       <div className="card-body col p-0">
         <table border="1">
           <tbody>

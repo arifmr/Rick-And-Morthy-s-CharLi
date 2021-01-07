@@ -1,7 +1,7 @@
 import React from 'react'
 import { useHistory } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
-import { removeFromFav } from '../Store/actions'
+import { removeFromFav, loadPage } from '../Store/actions'
 
 function FavoriteList({character}) {
   const history = useHistory()
@@ -9,6 +9,7 @@ function FavoriteList({character}) {
   const data = useSelector(state => state.id)
 
   const handleDetail = (id) => {
+    dispatch(loadPage())
     history.push("/detail/"+id)
   }
 

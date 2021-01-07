@@ -1,12 +1,20 @@
-import React from 'react'
-import { useSelector } from 'react-redux'
-import useFetch from '../Hooks/useFetch'
+import React, {useEffect} from 'react'
+import { useSelector, useDispatch } from 'react-redux'
+import {fetchCharacters} from '../Store/actions'
 import Loader from '../Components/Loader'
 import FavoriteList from '../Components/FavoriteList'
 
 function Favorite() {
   const id = useSelector(state => state.id)
-  const { data: characters, loading, error } = useFetch("https://rickandmortyapi.com/api/character/"+id)
+  const characters = useSelector((state) => state.characters)
+  const loading = useSelector((state) => state.loading)
+  const error = useSelector((state) => state.error)
+  const dispatch = useDispatch()
+
+  useEffect(() => {
+    dispatch(fetchCharacters("https://rickandmortyapi.com/api/character/"+id))
+  }, [dispatch, id])
+
   if (error) return <h1>Looks like our server is currently having an issue</h1>
   if (loading) return <Loader/>
 

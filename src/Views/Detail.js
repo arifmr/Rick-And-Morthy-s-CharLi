@@ -1,19 +1,26 @@
-import React from 'react'
+import React, {useEffect} from 'react'
+import {useSelector, useDispatch} from 'react-redux'
 import { useParams } from 'react-router-dom'
 import DetailCharacter from '../Components/DetailCharacter'
 import Loader from '../Components/Loader'
-import useFetch from '../Hooks/useFetch'
+import {fetchCharacters} from '../Store/actions'
 
 function Detail() {
   const params = useParams()
+  const dispatch = useDispatch()
   const url = "https://rickandmortyapi.com/api/character/" + params.id
-  const { data: character, loading, error } = useFetch(url)
+  const character = useSelector((state) => state.characters)
+  const loading = useSelector((state) => state.loading)
+  const error = useSelector((state) => state.error)
+
+  useEffect(() => {
+    dispatch(fetchCharacters(url))
+  }, [dispatch, url])
 
   if (error) return <h1>Looks like our server is currently having an issue</h1>
   if (loading) return <Loader/>
-
   return(
-    <div>
+    <div className="pb-5">
       <div className="container card shadow-lg mt-5" style={{ backgroundColor: "gray"}}>
         <div className="card-header row justify-content-center bg-warning p-0">
           <h1>Character Detail</h1>
