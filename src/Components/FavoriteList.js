@@ -1,12 +1,13 @@
 import React from 'react'
 import { useHistory } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
-import { removeFromFav, loadPage } from '../Store/actions'
+import {removeFromFav} from '../Store/actions/removeFromFav'
+import {loadPage} from '../Store/actions/loadPage'
 
 function FavoriteList({character}) {
   const history = useHistory()
   const dispatch = useDispatch()
-  const data = useSelector(state => state.id)
+  const data = useSelector(state => state.characterReducer.id)
 
   const handleDetail = (id) => {
     dispatch(loadPage())

@@ -2,12 +2,12 @@ import React, {useEffect} from 'react'
 import {useSelector, useDispatch} from 'react-redux'
 import CharacterList from '../Components/CharacterList'
 import Loader from '../Components/Loader'
-import {fetchCharacters} from '../Store/actions'
+import {fetchCharacters} from '../Store/actions/fetchCharacters'
 
 function Home() {
-  const characters = useSelector((state) => state.characters)
-  const loading = useSelector((state) => state.loading)
-  const error = useSelector((state) => state.error)
+  const characters = useSelector((state) => state.characterReducer.characters)
+  const loading = useSelector((state) => state.characterReducer.loading)
+  const error = useSelector((state) => state.characterReducer.error)
   const dispatch = useDispatch()
 
   useEffect(() => {

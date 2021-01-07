@@ -3,15 +3,15 @@ import {useSelector, useDispatch} from 'react-redux'
 import { useParams } from 'react-router-dom'
 import DetailCharacter from '../Components/DetailCharacter'
 import Loader from '../Components/Loader'
-import {fetchCharacters} from '../Store/actions'
+import {fetchCharacters} from '../Store/actions/fetchCharacters'
 
 function Detail() {
   const params = useParams()
   const dispatch = useDispatch()
   const url = "https://rickandmortyapi.com/api/character/" + params.id
-  const character = useSelector((state) => state.characters)
-  const loading = useSelector((state) => state.loading)
-  const error = useSelector((state) => state.error)
+  const character = useSelector((state) => state.characterReducer.characters)
+  const loading = useSelector((state) => state.characterReducer.loading)
+  const error = useSelector((state) => state.characterReducer.error)
 
   useEffect(() => {
     dispatch(fetchCharacters(url))

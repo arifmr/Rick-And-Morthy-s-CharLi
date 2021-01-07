@@ -3,7 +3,7 @@ import {useDispatch} from 'react-redux'
 import {NavLink, useHistory} from 'react-router-dom'
 import useDebounce from '../Hooks/useDebounce'
 import searchCharacters from '../Hooks/searchCharacters'
-import {loadPage} from '../Store/actions'
+import {loadPage} from '../Store/actions/loadPage'
 
 function Navbar() {
   const [searchTerm, setSearchTerm] = useState('')
@@ -26,21 +26,16 @@ function Navbar() {
     }
   }, [debouncedSearchTerm])
 
-  function onClick(id) {
+  function move(url) {
     dispatch(loadPage())
-    history.push("/detail/"+id)
-  }
-
-  function delay() {
-    dispatch(loadPage())
-    history.push("/")
+    history.push(url)
   }
 
   if (!results) {
     return (
       <div>
         <nav className="navbar p-3 bg-dark">
-          <NavLink exact to="/" className="ml-3 nav_link" activeStyle={{fontWeight: "bold", color: "red"}} onClick={() => delay()}><h3>Home</h3></NavLink>
+          <NavLink exact to="/" className="ml-3 nav_link" activeStyle={{fontWeight: "bold", color: "red"}} onClick={() => move("/")}><h3>Home</h3></NavLink>
           <NavLink exact to="/favorite" className="ml-5 nav_link" activeStyle={{fontWeight: "bold", color: "red"}}><h3>Favorite</h3></NavLink>
           <input type="text" className="ml-auto text-dark rounded p-1" onChange={e => setSearchTerm(e.target.value)} placeholder="Search" />
         </nav>
@@ -57,14 +52,14 @@ function Navbar() {
   return (
     <div>
       <nav className="navbar p-3 bg-dark">
-        <NavLink exact to="/" className="ml-3 nav_link" activeStyle={{fontWeight: "bold", color: "red"}} onClick={() => delay()}><h3>Home</h3></NavLink>
+        <NavLink exact to="/" className="ml-3 nav_link" activeStyle={{fontWeight: "bold", color: "red"}} onClick={() => move("/")}><h3>Home</h3></NavLink>
         <NavLink exact to="/favorite" className="ml-5 nav_link" activeStyle={{fontWeight: "bold", color: "red"}}><h3>Favorite</h3></NavLink>
         <input type="text" className="ml-auto text-dark rounded p-1" onChange={e => setSearchTerm(e.target.value)} placeholder="Search" />
       </nav>
       <div className="ml-auto mr-3" style={{width: '27.5vh'}}>
         {isSearching && <div>Searching ...</div>}
         {results.map(res => (
-          <button className="btn btn-light p-0 text-dark" style={{width: '27.5vh'}} onClick={() => {onClick(res.id)}} key={res.id}>
+          <button className="btn btn-light p-0 text-dark" style={{width: '27.5vh', float: 'right'}} onClick={() => {move("/detail/"+res.id)}} key={res.id}>
             {res.name}
           </button>
         ))}

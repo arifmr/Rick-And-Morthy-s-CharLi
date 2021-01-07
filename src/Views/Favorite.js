@@ -1,14 +1,14 @@
 import React, {useEffect} from 'react'
 import { useSelector, useDispatch } from 'react-redux'
-import {fetchCharacters} from '../Store/actions'
+import {fetchCharacters} from '../Store/actions/fetchCharacters'
 import Loader from '../Components/Loader'
 import FavoriteList from '../Components/FavoriteList'
 
 function Favorite() {
-  const id = useSelector(state => state.id)
-  const characters = useSelector((state) => state.characters)
-  const loading = useSelector((state) => state.loading)
-  const error = useSelector((state) => state.error)
+  const id = useSelector(state => state.characterReducer.id)
+  const characters = useSelector((state) => state.characterReducer.characters)
+  const loading = useSelector((state) => state.characterReducer.loading)
+  const error = useSelector((state) => state.characterReducer.error)
   const dispatch = useDispatch()
 
   useEffect(() => {
